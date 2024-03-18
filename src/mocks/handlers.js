@@ -1,20 +1,9 @@
 import { http, HttpResponse } from "msw";
 
-export const handlers = [
-  http.get("/api/users", (resolver) => {
-    return HttpResponse.json([
-      {
-        id: 1,
-        name: "John Doe",
-      },
-      {
-        id: 2,
-        name: "Jane Doe",
-      },
-    ]);
-  }),
+const allPosts = new Map();
 
-  http.get("/api/products", (resolver) => {
+export const handlers = [
+  http.get("/api/products", ({ request }) => {
     return HttpResponse.json([
       {
         id: 1,
@@ -30,6 +19,26 @@ export const handlers = [
         numReviews: 12,
       },
     ]);
+  }),
+
+  http.get("/api/posts", ({ request }) => {
+    return HttpResponse.json(Array.from(allPosts.values()));
+  }),
+
+  http.post("/api/posts", async ({ request }) => {
+    // Read the intercepted request body as JSON.
+    const newPost = await request.json();
+
+    // Push the new post to the map of all posts.
+    allPosts.set(newPost.id, newPost);
+
+    // Don't forget to declare a semantic "201 Created"
+    // response and send back the newly created post!
+    return HttpResponse.json(newPost, { status: 201 });
+  }),
+
+  http.delete("/api/posts/:id", ({ request }) => {
+    return HttpResponse.json([{}]);
   }),
 
   http.post("/api/messages", async ({ request }) => {
