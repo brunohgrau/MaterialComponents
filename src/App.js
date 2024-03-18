@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [content, setContent] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("/api/products");
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    fetch("/api/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
+    fetchData();
   }, []);
 
   const onSendClick = (e) => {
@@ -26,10 +35,11 @@ function App() {
   return (
     <>
       <div>
-        {users.map((user) => (
-          <div key={user.id}>{user.name}</div>
+        {products.map((product) => (
+          <div key={product.id}>{product.name}</div>
         ))}
       </div>
+
       <div>
         <input
           value={content}
