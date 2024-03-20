@@ -62,7 +62,7 @@ const Products = () => {
               <CardContent>
                 <Typography gutterBottom variant="h6" component="div">
                   <Link href="/details" color="text.primary">
-                    Produt Name
+                    Product Name
                   </Link>
                 </Typography>
 
