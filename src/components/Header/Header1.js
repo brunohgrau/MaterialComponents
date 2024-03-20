@@ -21,7 +21,6 @@ import DiamondIcon from "@mui/icons-material/Diamond";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
-import MailIcon from "@mui/icons-material/Mail";
 
 /*Search Component*/
 
