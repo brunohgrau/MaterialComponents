@@ -13,8 +13,8 @@ import {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true} path="/" element={<HomeScreen />} />
-      <Route path="/product" element={<ProductDetails />} />
+      <Route path="/" element={<HomeScreen />} />
+      <Route path="/details" element={<ProductDetails />} />
       {/*  <Route path="/product/:id" element={<ProductScreen />} /> */}
       {/*  <Route path="/cart" element={<CartScreen />} /> */}
     </Route>
@@ -29,7 +29,7 @@ async function deferRender() {
 deferRender().then(() => {
   ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-      <App />
+      <RouterProvider router={router} />
     </React.StrictMode>
   );
 });

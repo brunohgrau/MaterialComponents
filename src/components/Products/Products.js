@@ -45,7 +45,7 @@ const Products = () => {
             xs={12}
             sm={6}
             md={3}
-            // key={index}
+            key={product.id}
             sx={{
               display: "flex",
               gap: { xs: 3, sm: 6 },
@@ -61,7 +61,7 @@ const Products = () => {
               />
               <CardContent>
                 <Typography gutterBottom variant="h6" component="div">
-                  <Link href="#" color="text.primary">
+                  <Link href="/details" color="text.primary">
                     Produt Name
                   </Link>
                 </Typography>
