@@ -3,6 +3,14 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import HomeScreen from "./pages/HomeScreen";
 import ProductDetails from "./pages/ProductDetails.js";
+import CartScreen from "./pages/CartScreen.js";
+import Login from "./pages/Login.js";
+import Register from "./pages/Register.js";
+import Shipping from "./pages/Shipping.js";
+import PaymentMethod from "./pages/PaymentMethod.js";
+import PlaceOrder from "./pages/PlaceOrder.js";
+import OrderSummary from "./pages/OrderSummary.js";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -15,6 +23,14 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route path="/" element={<HomeScreen />} />
       <Route path="/details" element={<ProductDetails />} />
+      <Route path="/cart" element={<CartScreen />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/shipping" element={<Shipping />} />
+      <Route path="/payment" element={<PaymentMethod />} />
+      <Route path="/placeorder" element={<PlaceOrder />} />
+      <Route path="/ordersummary" element={<OrderSummary />} />
+
       {/*  <Route path="/product/:id" element={<ProductScreen />} /> */}
       {/*  <Route path="/cart" element={<CartScreen />} /> */}
     </Route>

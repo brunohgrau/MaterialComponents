@@ -162,7 +162,6 @@ const ProductDetails = () => {
                 </ListItemText>
               </ListItemButton>
             </ListItem>
-
             <Divider component="li" />
             <ListItem disablePadding>
               <ListItemButton>

@@ -21,6 +21,8 @@ import DiamondIcon from "@mui/icons-material/Diamond";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
+import Link from "@mui/material/Link";
+import { LinkOutlined } from "@mui/icons-material";
 
 /*Search Component*/
 
@@ -87,24 +89,26 @@ const Header1 = () => {
         }}
       >
         <DiamondIcon sx={{ mr: 1 }} />
+
         <Typography variant="h6" sx={{ my: 2 }}>
           Shop Name
         </Typography>
       </Box>
-
       <Divider />
       {/* Drawer List*/}
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton href="/cart">
             <ListItemIcon>
               <Badge badgeContent={1} color="secondary">
                 <ShoppingCartIcon sx={{ mr: -2 }} />
               </Badge>
             </ListItemIcon>
+
             <ListItemText primary={"Cart"} />
           </ListItemButton>
         </ListItem>
+
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
@@ -126,11 +130,13 @@ const Header1 = () => {
             {/* Shopname  and Logo*/}
             <Box sx={{ display: "flex", flexGrow: 1, alignItems: "center" }}>
               <DiamondIcon sx={{ mr: 1 }} />
-
               <Typography variant="h6" component="div">
-                Shop Name
+                <Link underline="none" href="/" color={"white"}>
+                  Shop Name
+                </Link>
               </Typography>
             </Box>
+
             {/* Search Bar*/}
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               <Search>
@@ -151,12 +157,16 @@ const Header1 = () => {
                 </Badge>
               </IconButton>
 
-              <Button sx={{ color: "#fff" }}>Cart</Button>
+              <Button sx={{ color: "#fff" }} href="/cart">
+                Cart
+              </Button>
               <IconButton sx={{ color: "#fff" }}>
                 <PersonIcon sx={{ mr: -2 }} />
               </IconButton>
 
-              <Button sx={{ color: "#fff" }}>Login</Button>
+              <Button sx={{ color: "#fff" }} href="/login">
+                Login
+              </Button>
             </Box>
             {/* Menu Icon*/}
             <IconButton
