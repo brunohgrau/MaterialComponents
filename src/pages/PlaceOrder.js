@@ -8,15 +8,25 @@ import Button from "@mui/material/Button";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import Grid from "@mui/material/Grid";
+import Divider from "@mui/material/Divider";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
 
 const steps = ["Shipping", "Payment", "Order"];
+
+const style = {
+  p: 0,
+  width: "100%",
+  maxWidth: 360,
+  borderRadius: 2,
+  border: "1px solid",
+  borderColor: "divider",
+  backgroundColor: "background.paper",
+};
 
 const PlaceOrder = () => {
   return (
@@ -65,11 +75,12 @@ const PlaceOrder = () => {
         </Box>
       </Container>
       <Grid container>
-        {/* Product Detail Card */}
+        {/* Empty Grid*/}
         <Grid item xs={12} md={2}>
           <Box></Box>
         </Grid>
-        <Grid item xs={12} md={4} sx={{ mt: 5 }}>
+        {/* Place Order Details */}
+        <Grid item xs={12} md={5} sx={{ mt: 5 }}>
           <Box
             sx={{
               display: "flex",
@@ -84,11 +95,215 @@ const PlaceOrder = () => {
               variant="body2"
               component="div"
               color="text.primary"
-              sx={{ mt: 2 }}
+              sx={{ mt: 1 }}
             >
               Address: Avenida 123
             </Typography>
+            <Divider sx={{ mt: 2 }} />
           </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "left",
+              mt: 3,
+            }}
+          >
+            <Typography variant="h6" component="div" color="text.primary">
+              Payment Method
+            </Typography>
+            <Typography
+              variant="body2"
+              component="div"
+              color="text.primary"
+              sx={{ mt: 1 }}
+            >
+              Method: Paypal
+            </Typography>
+            <Divider sx={{ mt: 2 }} />
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "left",
+              mt: 3,
+            }}
+          >
+            <Typography variant="h6" component="div" color="text.primary">
+              Order Items
+            </Typography>
+            <Typography
+              variant="body2"
+              component="div"
+              color="text.primary"
+              sx={{ mt: 1 }}
+            >
+              Method: Paypal
+            </Typography>
+            <Divider sx={{ mt: 2 }} />
+          </Box>
+        </Grid>
+
+        {/* Order Summary Card */}
+        <Grid item xs={12} md={3} sx={{ mt: 5, ml: { xs: 0, md: 7 } }}>
+          <List sx={style} aria-label="Add to cart">
+            {/* Order Summary Card - Title*/}
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <ListItemText
+                    primary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline" }}
+                          component="span"
+                          variant="h5"
+                          color="text.secondary"
+                        >
+                          Order Summary
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItemIcon>
+              </ListItemButton>
+            </ListItem>
+            <Divider component="li" />
+            {/* Order Summary Card - Item*/}
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <ListItemText
+                    primary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline" }}
+                          component="span"
+                          variant="body2"
+                          color="text.secondary"
+                        >
+                          Items
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItemIcon>
+                <ListItemText sx={{ ml: 8 }}>
+                  <Typography
+                    // sx={{ display: "inline" }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    $600
+                  </Typography>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <Divider component="li" />
+            {/* Order Summary Card - Shipping*/}
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <ListItemText
+                    primary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline" }}
+                          component="span"
+                          variant="body2"
+                          color="text.secondary"
+                        >
+                          Shipping
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItemIcon>
+                <ListItemText sx={{ ml: 8 }}>
+                  <Typography
+                    // sx={{ display: "inline" }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    $10
+                  </Typography>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <Divider component="li" />
+            {/* Order Summary Card - Tax*/}
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <ListItemText
+                    primary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline" }}
+                          component="span"
+                          variant="body2"
+                          color="text.secondary"
+                        >
+                          Tax
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItemIcon>
+                <ListItemText sx={{ ml: 8 }}>
+                  <Typography
+                    // sx={{ display: "inline" }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    $1
+                  </Typography>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <Divider component="li" />
+            {/* Order Summary Card - Total*/}
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <ListItemText
+                    primary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline" }}
+                          component="span"
+                          variant="body2"
+                          color="text.secondary"
+                        >
+                          Total
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItemIcon>
+                <ListItemText sx={{ ml: 8 }}>
+                  <Typography
+                    // sx={{ display: "inline" }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    $700
+                  </Typography>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+            {/* Order Summary Card - Button*/}
+            <ListItem sx={{ mt: 2, mb: 2 }}>
+              <Button variant="contained" size="large">
+                Place Order
+              </Button>
+            </ListItem>
+          </List>
         </Grid>
       </Grid>
     </Container>
