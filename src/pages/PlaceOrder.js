@@ -299,7 +299,7 @@ const PlaceOrder = () => {
             </ListItem>
             {/* Order Summary Card - Button*/}
             <ListItem sx={{ mt: 2, mb: 2 }}>
-              <Button variant="contained" size="large">
+              <Button variant="contained" size="large" href="/ordersummary">
                 Place Order
               </Button>
             </ListItem>
