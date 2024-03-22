@@ -3,23 +3,66 @@ import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
+
+const steps = ["Shipping", "Payment", "Order"];
 
 const Shipping = () => {
   return (
-    <Container sx={{ py: { xs: 16 } }} maxWidth="xs">
+    <Container sx={{ py: { xs: 14 } }} maxWidth="xs">
       <CssBaseline />
+
+      {/* Stepper */}
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          mb: 4,
+          //alignItems: "flex-end",
+          //flexGrow: 1,
+          // height: 150,
+        }}
+      >
+        <Stepper
+          id="desktop-stepper"
+          // activeStep={activeStep}
+          sx={{
+            width: "100%",
+            height: 10,
+          }}
+        >
+          {steps.map((label) => (
+            <Step
+              sx={{
+                ":first-child": { pl: 0 },
+                ":last-child": { pr: 0 },
+              }}
+              key={label}
+            >
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Box>
+
+      {/* Page Header */}
+
       <Typography
         component="h4"
         variant="h4"
         color="text.primary"
-        sx={{ mb: 2 }}
+        //sx={{ mb: 1 }}
       >
         Shipping
       </Typography>
+
+      {/* Form */}
 
       <Box
         sx={{
@@ -75,6 +118,7 @@ const Shipping = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            href="/payment"
           >
             Continue
           </Button>
