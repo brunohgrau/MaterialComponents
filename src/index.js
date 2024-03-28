@@ -10,6 +10,9 @@ import Shipping from "./pages/Shipping.js";
 import PaymentMethod from "./pages/PaymentMethod.js";
 import PlaceOrder from "./pages/PlaceOrder.js";
 import OrderSummary from "./pages/OrderSummary.js";
+import PostScreen from "./pages/PostScreen.js";
+import store from "./store";
+import { Provider } from "react-redux";
 
 import {
   createBrowserRouter,
@@ -30,9 +33,7 @@ const router = createBrowserRouter(
       <Route path="/payment" element={<PaymentMethod />} />
       <Route path="/placeorder" element={<PlaceOrder />} />
       <Route path="/ordersummary" element={<OrderSummary />} />
-
-      {/*  <Route path="/product/:id" element={<ProductScreen />} /> */}
-      {/*  <Route path="/cart" element={<CartScreen />} /> */}
+      <Route path="/post" element={<PostScreen />} />
     </Route>
   )
 );
@@ -45,7 +46,9 @@ async function deferRender() {
 deferRender().then(() => {
   ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </React.StrictMode>
   );
 });
