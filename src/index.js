@@ -10,7 +10,9 @@ import Shipping from "./pages/Shipping.js";
 import PaymentMethod from "./pages/PaymentMethod.js";
 import PlaceOrder from "./pages/PlaceOrder.js";
 import OrderSummary from "./pages/OrderSummary.js";
-import PostScreen from "./pages/PostScreen.js";
+import PostScreen from "./pages/PostApp/PostScreen.js";
+import SinglePostPage from "./pages/PostApp/SinglePostPage.js";
+
 import store from "./store";
 import { Provider } from "react-redux";
 
@@ -34,6 +36,7 @@ const router = createBrowserRouter(
       <Route path="/placeorder" element={<PlaceOrder />} />
       <Route path="/ordersummary" element={<OrderSummary />} />
       <Route path="/post" element={<PostScreen />} />
+      <Route exact path="/posts/:postId" element={<SinglePostPage />} />
     </Route>
   )
 );
