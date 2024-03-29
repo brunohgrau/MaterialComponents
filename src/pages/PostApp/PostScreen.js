@@ -3,6 +3,7 @@ import Container from "@mui/material/Container";
 import PostsList from "../../components/PostApp/PostsList";
 import AddPostForm from "../../components/PostApp/AddPostForm";
 import Grid from "@mui/system/Unstable_Grid/Grid";
+import Msw from "../../components/Msw/Msw";
 
 const PostScreen = () => {
   return (
@@ -20,7 +21,7 @@ const PostScreen = () => {
         }}
       >
         <Grid
-          Container
+          container
           sx={{ display: "flex ", justifyContent: "space-between" }}
         >
           <Grid item>
@@ -28,6 +29,11 @@ const PostScreen = () => {
           </Grid>
           <Grid item>
             <AddPostForm />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item>
+            <Msw />
           </Grid>
         </Grid>
       </Container>

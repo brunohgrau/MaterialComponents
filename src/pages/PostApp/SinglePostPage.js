@@ -5,13 +5,12 @@ import Grid from "@mui/system/Unstable_Grid/Grid";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PostAuthor from "../../components/PostApp/PostAuthor";
+import { selectPostById } from "../../slices/postsSlices";
 
 const SinglePostPage = () => {
   const { postId } = useParams();
 
-  const post = useSelector((state) =>
-    state.posts.find((post) => post.id === postId)
-  );
+  const post = useSelector((state) => selectPostById(state, postId));
 
   if (!post) {
     return (

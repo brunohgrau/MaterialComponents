@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { postUpdated } from "../../slices/postsSlices";
+import { postUpdated, selectPostById } from "../../slices/postsSlices";
 import Container from "@mui/material/Container";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 
 const EditPostForm = () => {
   const { postId } = useParams();
-  const post = useSelector((state) =>
-    state.posts.find((post) => post.id === postId)
-  );
+
+  const post = useSelector((state) => selectPostById(state, postId));
+
   const [title, setTitle] = useState(post.title);
   const [content, setContent] = useState(post.content);
 
