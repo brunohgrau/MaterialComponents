@@ -12,6 +12,7 @@ import PlaceOrder from "./pages/PlaceOrder.js";
 import OrderSummary from "./pages/OrderSummary.js";
 import PostScreen from "./pages/PostApp/PostScreen.js";
 import SinglePostPage from "./pages/PostApp/SinglePostPage.js";
+import EditPostForm from "./pages/PostApp/EditPostForm.js";
 
 import store from "./store";
 import { Provider } from "react-redux";
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
       <Route path="/ordersummary" element={<OrderSummary />} />
       <Route path="/post" element={<PostScreen />} />
       <Route exact path="/posts/:postId" element={<SinglePostPage />} />
+      <Route exact path="/editPost/:postId" element={<EditPostForm />} />
     </Route>
   )
 );

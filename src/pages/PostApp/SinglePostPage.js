@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Container from "@mui/material/Container";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SinglePostPage = () => {
   const { postId } = useParams();
@@ -37,6 +38,9 @@ const SinglePostPage = () => {
           <article className="post">
             <h2>{post.title}</h2>
             <p className="post-content">{post.content}</p>
+            <Link to={`/editPost/${post.id}`} className="button">
+              Edit Post
+            </Link>
           </article>
         </Grid>
       </Grid>
