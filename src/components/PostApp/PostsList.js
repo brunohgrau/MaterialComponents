@@ -1,40 +1,33 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import PostAuthor from "./PostAuthor";
-import { selectAllPosts, fetchPosts } from "../../slices/postsSlices";
+import {
+  selectAllPosts,
+  fetchPosts,
+  getPostStatus,
+  getPostError,
+} from "../../slices/postsSlices.js";
+import PostExcerpt from "./PostExcerpt.js";
 
 const PostsList = () => {
   const dispatch = useDispatch();
   const posts = useSelector(selectAllPosts);
-  const postStatus = useSelector((state) => state.posts.status);
+  const postStatus = useSelector(getPostStatus);
+  const error = useSelector(getPostError);
+
   useEffect(() => {
     if (postStatus === "idle") {
       dispatch(fetchPosts());
     }
   }, [postStatus, dispatch]);
 
-  // Sort posts in reverse chronological order by datetime string
-  const orderedPosts = posts
-    .slice()
-    .sort((a, b) => b.date.localeCompare(a.date));
-
-  const renderedPosts = orderedPosts.map((post) => (
-    <article className="post-excerpt" key={post.id}>
-      <h3>{post.title}</h3>
-      <p className="post-content">{post.content.substring(0, 100)}</p>
-      <Link to={`/posts/${post.id}`} className="button muted-button">
-        View Post
-      </Link>
-      <PostAuthor userId={post.user} />
-    </article>
-  ));
-
   return (
     <>
       <section className="posts-list">
-        <h2>Posts</h2>
-        {renderedPosts}
+        <h2>Post List</h2>
+        {console.log(posts)}
+        {posts.map((post) => (
+          <h1 key={post.id}>{post.title}</h1>
+        ))}
       </section>
     </>
   );

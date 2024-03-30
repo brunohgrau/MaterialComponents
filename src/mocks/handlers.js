@@ -23,10 +23,14 @@ export const handlers = [
   http.get("/api/posts", ({ request }) => {
     return HttpResponse.json([
       {
-        id: 1,
         title: "Post Title",
         content: "Post Content",
-        author: "Post Author",
+        user: "Post Author",
+      },
+      {
+        title: "Post Title",
+        content: "Post Content",
+        user: "Post Author",
       },
     ]);
   }),

@@ -5,7 +5,7 @@ import Grid from "@mui/system/Unstable_Grid/Grid";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PostAuthor from "../../components/PostApp/PostAuthor";
-import { selectPostById } from "../../slices/postsSlices";
+import { selectPostById } from "../../slices/postsSlices.js";
 
 const SinglePostPage = () => {
   const { postId } = useParams();

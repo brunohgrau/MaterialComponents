@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { postUpdated, selectPostById } from "../../slices/postsSlices";
+import { postUpdated, selectPostById } from "../../slices/postsSlices.js";
 import Container from "@mui/material/Container";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 
