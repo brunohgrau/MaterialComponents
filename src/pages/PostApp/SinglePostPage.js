@@ -1,22 +1,22 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import Container from "@mui/material/Container";
 import Grid from "@mui/system/Unstable_Grid/Grid";
+import { useGetPostQuery } from "../../slices/postApiSlice";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import PostAuthor from "../../components/PostApp/PostAuthor";
-import { selectPostById } from "../../slices/postsSlices.js";
 
 const SinglePostPage = () => {
   const { postId } = useParams();
+  const { data: post, isFetching, isSuccess } = useGetPostQuery(postId);
 
-  const post = useSelector((state) => selectPostById(state, postId));
-
-  if (!post) {
-    return (
-      <section>
-        <h2>Post not found!</h2>
-      </section>
+  let content;
+  if (isFetching) {
+    content = <h2> Spiner</h2>;
+  } else if (isSuccess) {
+    content = (
+      <article className="post" key={postId}>
+        <h2>{post.title}</h2>
+        {postId}
+      </article>
     );
   }
 
@@ -25,24 +25,17 @@ const SinglePostPage = () => {
       fixed
       id="products"
       sx={{
-        py: { xs: 8 },
+        py: { xs: 16 },
         position: "relative",
         display: "flex",
         flexDirection: "column",
-
-        //gap: { xs: 3, sm: 6 },
       }}
     >
       <Grid container>
         <Grid item>
-          <article className="post">
-            <h2>{post.title}</h2>
-            <p className="post-content">{post.content}</p>
-            <Link to={`/editPost/${post.id}`} className="button">
-              Edit Post
-            </Link>
-            <PostAuthor userId={post.user} />
-          </article>
+          <h2>Single Post</h2>
+          {content}
+          {postId}
         </Grid>
       </Grid>
     </Container>

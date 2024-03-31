@@ -1,33 +1,34 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectAllPosts,
-  fetchPosts,
-  getPostStatus,
-  getPostError,
-} from "../../slices/postsSlices.js";
-import PostExcerpt from "./PostExcerpt.js";
+import React, { useMemo } from "react";
+import { useGetPostsQuery } from "../../slices/postApiSlice";
+import PostExcerpt from "./PostExcerpt";
 
 const PostsList = () => {
-  const dispatch = useDispatch();
-  const posts = useSelector(selectAllPosts);
-  const postStatus = useSelector(getPostStatus);
-  const error = useSelector(getPostError);
+  const {
+    data: posts = [],
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetPostsQuery();
 
-  useEffect(() => {
-    if (postStatus === "idle") {
-      dispatch(fetchPosts());
-    }
-  }, [postStatus, dispatch]);
+  const sortedPosts = useMemo(() => {
+    const sortedPosts = posts.slice();
+    // Sort posts in descending chronological order
+    sortedPosts.sort((a, b) => b.date.localeCompare(a.date));
+    return sortedPosts;
+  }, [posts]);
+
+  let content;
+
+  content = sortedPosts.map((post) => (
+    <PostExcerpt key={post.id} post={post} />
+  ));
 
   return (
     <>
       <section className="posts-list">
         <h2>Post List</h2>
-        {console.log(posts)}
-        {posts.map((post) => (
-          <h1 key={post.id}>{post.title}</h1>
-        ))}
+        {content}
       </section>
     </>
   );

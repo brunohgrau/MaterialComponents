@@ -1,11 +1,10 @@
 import React from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-import { useGetProductsQuery } from "../../slices/productsApiSlice";
+import { useGetBlogsQuery } from "../../slices/blogsApiSlice";
 
-const ReduxApp = () => {
-  const { data: products, isLoading, isError } = useGetProductsQuery();
-
+const BlogPosts = () => {
+  const { data: blogs } = useGetBlogsQuery();
   return (
     <>
       <Container
@@ -20,8 +19,8 @@ const ReduxApp = () => {
       >
         <Grid container sx={{ display: "flex ", justifyContent: "center" }}>
           <Grid item>
-            {products?.map((product) => (
-              <p key={product.id}>{product.name}</p>
+            {blogs?.map((blog) => (
+              <p key={blog.id}>{blog.title}</p>
             ))}
           </Grid>
 
@@ -32,4 +31,4 @@ const ReduxApp = () => {
   );
 };
 
-export default ReduxApp;
+export default BlogPosts;

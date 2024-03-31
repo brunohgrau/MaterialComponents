@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 import PostsList from "../../components/PostApp/PostsList";
 import AddPostForm from "../../components/PostApp/AddPostForm";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-import Msw from "../../components/Msw/Msw";
+import BlogComponent from "./BlogComponent";
 
 const PostScreen = () => {
   return (
@@ -30,10 +30,8 @@ const PostScreen = () => {
           <Grid item>
             <AddPostForm />
           </Grid>
-        </Grid>
-        <Grid container>
           <Grid item>
-            <Msw />
+            <BlogComponent />
           </Grid>
         </Grid>
       </Container>
