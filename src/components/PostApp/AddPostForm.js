@@ -7,8 +7,6 @@ const AddPostForm = () => {
   const [content, setContent] = useState("");
   const [userId, setUserId] = useState("");
 
-  const dispatch = useDispatch();
-
   const users = useSelector((state) => state.users);
 
   const onTitleChanged = (e) => setTitle(e.target.value);

@@ -3,20 +3,17 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import { useGetPostQuery } from "../../slices/postApiSlice";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SinglePostPage = () => {
   const { postId } = useParams();
   const { data: post, isFetching, isSuccess } = useGetPostQuery(postId);
 
-  let content;
-  if (isFetching) {
-    content = <h2> Spiner</h2>;
-  } else if (isSuccess) {
-    content = (
-      <article className="post" key={postId}>
-        <h2>{post.title}</h2>
-        {postId}
-      </article>
+  if (!post) {
+    return (
+      <section>
+        <h2>Post not found!</h2>
+      </section>
     );
   }
 
@@ -33,9 +30,15 @@ const SinglePostPage = () => {
     >
       <Grid container>
         <Grid item>
-          <h2>Single Post</h2>
-          {content}
-          {postId}
+          <section>
+            <article className="post">
+              <h2>{post.title}</h2>
+              <p className="post-content">{post.content}</p>
+              <Link to={`/editPost/${post.id}`} className="button">
+                Edit Post
+              </Link>
+            </article>
+          </section>
         </Grid>
       </Grid>
     </Container>

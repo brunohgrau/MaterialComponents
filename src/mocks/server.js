@@ -89,26 +89,45 @@ export const handlers = [
     return HttpResponse.json(posts);
   }),
 
-  http.get("/api/posts", ({ request }) => {
-    return HttpResponse.json([
-      {
-        id: 1,
-        title: "Post01",
-        content: "Post01 Content",
-        user: "",
-        date: new Date().toISOString(),
-      },
-      {
-        id: 2,
-        title: "Post02",
-        content: "Post02",
-        user: "",
-        date: new Date().toISOString(),
-      },
-    ]);
+  http.post("/fakeApi/posts", async function ({ request }) {
+    const data = await request.json();
+
+    if (data.content === "error") {
+      return new HttpResponse(
+        JSON.stringify("Server error saving this post!"),
+        {
+          status: 500,
+        }
+      );
+    }
+
+    data.date = new Date().toISOString();
+    const user = db.user.findFirst({ where: { id: { equals: data.user } } });
+    data.user = user;
+    data.reactions = db.reaction.create();
+    const post = db.post.create(data);
+    return HttpResponse.json(serializePost(post));
   }),
-  http.get("api/post/:postId", ({ params }) => {
-    return HttpResponse.json({});
+
+  http.get("/fakeApi/posts/:postId", async function ({ params }) {
+    const post = db.post.findFirst({
+      where: { id: { equals: params.postId } },
+    });
+
+    return HttpResponse.json(serializePost(post));
+  }),
+
+  http.patch("/fakeApi/posts/:postId", async ({ request, params }) => {
+    const { id, ...data } = await request.json();
+    const updatedPost = db.post.update({
+      where: { id: { equals: params.postId } },
+      data,
+    });
+    return HttpResponse.json(serializePost(updatedPost));
+  }),
+
+  http.get("/fakeApi/users", async () => {
+    return HttpResponse.json(db.user.getAll());
   }),
 
   http.get("/api/products", ({ request }) => {
