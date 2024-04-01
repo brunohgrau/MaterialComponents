@@ -5,6 +5,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPosts: builder.query({
       query: () => POSTS_URL,
+      providesTags: ["Post"],
     }),
 
     /* 
@@ -58,6 +59,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
         // Include the entire post object as the body of the request
         body: initialPost,
       }),
+      invalidatesTags: ["Post"],
     }),
   }),
 });

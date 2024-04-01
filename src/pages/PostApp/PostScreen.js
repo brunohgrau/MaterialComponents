@@ -24,7 +24,7 @@ const PostScreen = () => {
           <Grid item>
             <PostsList />
           </Grid>
-          <Grid item>{/* <AddPostForm /> */}</Grid>
+          <Grid item><AddPostForm /></Grid>
         </Grid>
       </Container>
     </>
