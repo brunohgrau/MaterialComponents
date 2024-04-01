@@ -15,8 +15,6 @@ const PostScreen = () => {
           position: "relative",
           display: "flex",
           flexDirection: "column",
-
-          //gap: { xs: 3, sm: 6 },
         }}
       >
         <Grid
@@ -26,10 +24,7 @@ const PostScreen = () => {
           <Grid item>
             <PostsList />
           </Grid>
-          <Grid item>
-            <AddPostForm />
-          </Grid>
-          <Grid item></Grid>
+          <Grid item>{/* <AddPostForm /> */}</Grid>
         </Grid>
       </Container>
     </>

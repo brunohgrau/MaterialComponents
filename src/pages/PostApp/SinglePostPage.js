@@ -32,7 +32,9 @@ const SinglePostPage = () => {
         <Grid item>
           <section>
             <article className="post">
-              <h2>{post.title}</h2>
+              <h2>
+                {post.title} / {post.date}
+              </h2>
               <p className="post-content">{post.content}</p>
               <Link to={`/editPost/${post.id}`} className="button">
                 Edit Post
