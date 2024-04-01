@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useGetPostsQuery } from "../../slices/postApiSlice";
+import { useGetPostsQuery } from "../../slices/apiSlice";
 import PostExcerpt from "./PostExcerpt";
 
 const PostsList = () => {

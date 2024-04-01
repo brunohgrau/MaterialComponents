@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-import { useGetPostQuery } from "../../slices/postApiSlice";
+import { useGetPostQuery } from "../../slices/apiSlice";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 

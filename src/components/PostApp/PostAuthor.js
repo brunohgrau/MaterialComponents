@@ -1,6 +1,5 @@
 import React from "react";
 import { useGetUsersQuery } from "../../slices/usersApiSlice";
-
 const PostAuthor = ({ userId }) => {
   const { data: users } = useGetUsersQuery();
 

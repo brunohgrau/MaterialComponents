@@ -1,14 +1,12 @@
-import { USERS_URL } from "../constants.js";
-import { apiSlice } from "./apiSlice.js";
+import { createEntityAdapter, createSelector } from "@reduxjs/toolkit";
+import { apiSlice } from "./apiSlice";
 
-export const usersApiSlice = apiSlice.injectEndpoints({
+export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: () => ({
-        url: USERS_URL,
-      }),
+      query: () => "/users",
     }),
   }),
 });
 
-export const { useGetUsersQuery, selectAll: selectAllUsers } = usersApiSlice;
+export const { useGetUsersQuery } = extendedApiSlice;
