@@ -25,6 +25,24 @@ const SinglePostPage = () => {
     navigate(`/post`);
   };
 
+  let content;
+  if (isFetching) {
+    content = <p>Loading...</p>;
+  } else if (isSuccess) {
+    content = (
+      <article className="post">
+        <h2>{post.title}</h2>
+        <p className="post-content">{post.content}</p>
+        <Link to={`/editPost/${post.id}`} className="button">
+          Edit Post
+        </Link>
+        <button className="button" onClick={() => onDeletePostClicked(post.id)}>
+          Delete
+        </button>
+      </article>
+    );
+  }
+
   return (
     <Container
       fixed
@@ -38,21 +56,7 @@ const SinglePostPage = () => {
     >
       <Grid container>
         <Grid item>
-          <section>
-            <article className="post">
-              <h2>{post.title}</h2>
-              <p className="post-content">{post.content}</p>
-              <Link to={`/editPost/${post.id}`} className="button">
-                Edit Post
-              </Link>
-              <button
-                className="button"
-                onClick={() => onDeletePostClicked(post.id)}
-              >
-                Delete
-              </button>
-            </article>
-          </section>
+          <section>{content}</section>
         </Grid>
       </Grid>
     </Container>

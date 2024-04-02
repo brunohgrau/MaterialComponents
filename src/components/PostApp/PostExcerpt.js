@@ -2,6 +2,7 @@ import React from "react";
 import PostAuthor from "./PostAuthor";
 import TimeAgo from "./TimeAgo";
 import { Link } from "react-router-dom";
+import { ReactionButtons } from "./ReactionButtons";
 
 const PostExcerpt = ({ post, refetch }) => {
   return (
@@ -12,6 +13,7 @@ const PostExcerpt = ({ post, refetch }) => {
         <TimeAgo timestamp={post.date} />
       </div>
       <p className="post-content">{post.content.substring(0, 20)}</p>
+      <ReactionButtons post={post} refetch={refetch} />
 
       <Link to={`/posts/${post.id}`} className="button muted-button">
         View Post
