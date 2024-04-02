@@ -3,13 +3,14 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/system/Unstable_Grid/Grid";
 import { useGetPostQuery } from "../../slices/apiSlice";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDeletePostMutation } from "../../slices/apiSlice";
 
 const SinglePostPage = () => {
   const { postId } = useParams();
   const { data: post, isFetching, isSuccess } = useGetPostQuery(postId);
   const [deletePost, { isLoading: loadingDelete }] = useDeletePostMutation();
+  const navigate = useNavigate();
 
   if (!post) {
     return (
@@ -18,6 +19,11 @@ const SinglePostPage = () => {
       </section>
     );
   }
+
+  const onDeletePostClicked = async (id) => {
+    await deletePost({ id: postId });
+    navigate(`/post`);
+  };
 
   return (
     <Container
@@ -41,7 +47,7 @@ const SinglePostPage = () => {
               </Link>
               <button
                 className="button"
-                onClick={() => deletePost({ id: postId })}
+                onClick={() => onDeletePostClicked(post.id)}
               >
                 Delete
               </button>
