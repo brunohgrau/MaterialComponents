@@ -35,6 +35,18 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: (result, error, arg) => [{ type: "Post", id: arg.id }],
     }),
+
+    deletePost: builder.mutation({
+      query({ id }) {
+        return {
+          url: `posts/${id}`,
+          method: "DELETE",
+          body: { id },
+        };
+      },
+      invalidatesTags: (result, error, arg) => [{ type: "Post", id: arg.id }],
+    }),
+
     addReaction: builder.mutation({
       query: ({ postId, reaction }) => ({
         url: `posts/${postId}/reactions`,
@@ -71,4 +83,5 @@ export const {
   useAddNewPostMutation,
   useEditPostMutation,
   useAddReactionMutation,
+  useDeletePostMutation,
 } = apiSlice;

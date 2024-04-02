@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
 import { useAddNewPostMutation } from "../../slices/postApiSlice";
 import { useGetUsersQuery } from "../../slices/usersApiSlice";
 

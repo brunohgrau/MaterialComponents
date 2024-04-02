@@ -9,6 +9,7 @@ const PostsList = () => {
     isSuccess,
     isError,
     error,
+    refetch,
   } = useGetPostsQuery();
 
   const sortedPosts = useMemo(() => {
@@ -21,7 +22,7 @@ const PostsList = () => {
   let content;
 
   content = sortedPosts.map((post) => (
-    <PostExcerpt key={post.id} post={post} />
+    <PostExcerpt key={post.id} post={post} refetch={refetch} />
   ));
 
   return (

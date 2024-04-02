@@ -4,10 +4,12 @@ import Grid from "@mui/system/Unstable_Grid/Grid";
 import { useGetPostQuery } from "../../slices/apiSlice";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useDeletePostMutation } from "../../slices/apiSlice";
 
 const SinglePostPage = () => {
   const { postId } = useParams();
   const { data: post, isFetching, isSuccess } = useGetPostQuery(postId);
+  const [deletePost, { isLoading: loadingDelete }] = useDeletePostMutation();
 
   if (!post) {
     return (
@@ -37,6 +39,12 @@ const SinglePostPage = () => {
               <Link to={`/editPost/${post.id}`} className="button">
                 Edit Post
               </Link>
+              <button
+                className="button"
+                onClick={() => deletePost({ id: postId })}
+              >
+                Delete
+              </button>
             </article>
           </section>
         </Grid>

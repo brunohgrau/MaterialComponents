@@ -82,6 +82,7 @@ const serializePost = (post) => ({
 });
 
 /* MSW REST API Handlers */
+const allPosts = new Map();
 
 export const handlers = [
   http.get("/fakeApi/posts", function () {
@@ -126,6 +127,15 @@ export const handlers = [
     return HttpResponse.json(serializePost(updatedPost));
   }),
 
+  http.delete("/fakeApi/posts/:postId", async ({ request, params }) => {
+    const deletedPost = db.post.delete({
+      where: { id: { equals: params.postId } },
+    });
+
+    // Respond with the serialized deleted post
+    return HttpResponse.json(serializePost(deletedPost));
+  }),
+
   http.get("/fakeApi/users", async () => {
     return HttpResponse.json(db.user.getAll());
   }),
@@ -149,21 +159,5 @@ export const handlers = [
   }),
   http.get("/api/products/:id", ({ request }) => {
     return HttpResponse.json([]);
-  }),
-
-  http.get("/api/users", ({ request }) => {
-    return HttpResponse.json([
-      { id: "0", name: "Tianna Jenkins" },
-      { id: "1", name: "Kevin Grant" },
-      { id: "2", name: "Madison Price" },
-    ]);
-  }),
-  http.get("/api/notifications", ({ request }) => {
-    return HttpResponse.json([
-      {
-        id: 1,
-        notification: "Notification Message",
-      },
-    ]);
   }),
 ];
